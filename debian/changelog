@@ -1,3 +1,9 @@
+commandeer (0.1-0ubuntu1~ppa2) karmic; urgency=low
+
+  * Fix build dependency error.
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Fri, 19 Jun 2009 19:35:49 -0400
+
 commandeer (0.1-0ubuntu1~ppa1) karmic; urgency=low
 
   * Initial release into PPA.
