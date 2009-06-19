@@ -1,0 +1,5 @@
+commandeer (0.1-0ubuntu1~ppa1) karmic; urgency=low
+
+  * Initial release into PPA.
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Thu, 18 Jun 2009 22:27:36 -0400

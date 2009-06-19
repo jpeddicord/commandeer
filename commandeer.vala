@@ -135,7 +135,7 @@ class Commandeer : Window {
         information = new Label ("Commandeer");
         information.use_markup = true;
         information.wrap = true;
-        vbox.pack_start (information, true, true, 0);
+        vbox.pack_start (information, true, true, 5);
         
         update_info ();
     }

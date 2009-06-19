@@ -10,7 +10,7 @@ all:
 	valac --pkg gtk+-2.0 --pkg posix commandeer.vala
 
 install:
-	install -m 755 commandeer $(PREFIX)/bin/commandeer
+	install -D -m 755 commandeer $(PREFIX)/bin/commandeer
 
 uninstall:
 	rm -f $(PREFIX)/bin/commandeer

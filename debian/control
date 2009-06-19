@@ -2,12 +2,12 @@ Source: commandeer
 Section: utils
 Priority: optional
 Maintainer: Jacob Peddicord <jpeddicord@ubuntu.com>
-Build-Depends: debhelper (>= 6), valac
+Build-Depends: cdbs, debhelper (>= 6), valac
 Standards-Version: 3.8.1
 Homepage: https://launchpad.net/commandeer
 
 Package: commandeer
-Architecture: all
+Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: lock the screen for command execution
  Commandeer allows you to lock the active screen and run a command.
