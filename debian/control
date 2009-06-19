@@ -1,0 +1,21 @@
+Source: commandeer
+Section: utils
+Priority: optional
+Maintainer: Jacob Peddicord <jpeddicord@ubuntu.com>
+Build-Depends: debhelper (>= 6), valac
+Standards-Version: 3.8.1
+Homepage: https://launchpad.net/commandeer
+
+Package: commandeer
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: lock the screen for command execution
+ Commandeer allows you to lock the active screen and run a command.
+ They can be paused, started, and stopped by the user if chosen. A delay
+ option is provided to schedule important system maintenance tasks (such
+ as a backup) and allow the user to save their work before the command
+ begins.
+ .
+ This was programmed as a Vala learning experience, and may not suit all
+ usages. However, it is enough to keep a novice user off of their desktop
+ while important tasks are running.
