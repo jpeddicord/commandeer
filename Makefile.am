@@ -16,7 +16,8 @@ EXTRA_DIST = $(commandeer_VALASOURCES) \
 	commandeer.stamp
 
 VALA_FLAGS = --pkg gtk+-2.0 \
-	--pkg posix
+	--pkg posix \
+	--pkg config
 
 commandeer.stamp: $(commandeer_VALASOURCES)
 	$(VALAC) -C $(VALA_FLAGS) \
