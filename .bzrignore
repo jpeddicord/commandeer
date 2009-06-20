@@ -12,3 +12,7 @@ depcomp
 install-sh
 missing
 stamp-h1
+src/Commandeer.c
+src/SpawnCommand.c
+src/commandeer
+src/commandeer.stamp
