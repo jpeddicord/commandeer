@@ -4,7 +4,7 @@ AM_INIT_AUTOMAKE(foreign -Wall)
 AC_PREREQ(2.60)
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_SRCDIR([commandeer.vala])
+AC_CONFIG_SRCDIR([src/commandeer.vala])
 
 AC_PROG_CC
 AC_PATH_PROG(VALAC, valac, valac)
@@ -21,7 +21,8 @@ AC_SUBST(GOBJECT_LIBS)
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile
+	src/Makefile])
 AC_OUTPUT
 
 # Finalize script output
