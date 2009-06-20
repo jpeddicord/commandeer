@@ -3,7 +3,8 @@ bin_PROGRAMS = commandeer
 AM_CFLAGS = @GLIB_CFLAGS@ @GOBJECT_CFLAGS@ @GTK_CFLAGS@
 
 commandeer_LDADD = @GLIB_LIBS@ @GOBJECT_LIBS@ @GTK_LIBS@
-commandeer_VALASOURCES = commandeer.vala
+commandeer_VALASOURCES = Commandeer.vala \
+	SpawnCommand.vala
 
 MAINTAINERCLEANFILES = $(commandeer_VALASOURCES:.vala=.c) \
 	commandeer.stamp
