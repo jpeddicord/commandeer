@@ -70,7 +70,7 @@ namespace Commandeer {
 		private MessageDialog quit_dlg;
     
 		public Commandeer () {
-			this.title = "Commandeer";
+			this.title = "Commandeer %s".printf(Build.VERSION);
 			this.destroy += Gtk.main_quit;
 			this.position = WindowPosition.CENTER;
 			this.deletable = false;
