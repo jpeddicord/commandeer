@@ -21,8 +21,9 @@
 using Gtk;
 
 namespace Commandeer {
+
 	class Commandeer : Window {
-    
+
 		static int arg_delay;
 		static bool arg_pause;
 		static bool arg_cancel;
@@ -38,12 +39,12 @@ namespace Commandeer {
 			{ "text", 't', 0, OptionArg.STRING, out arg_text, "Dialog text.", "TEXT" },
 			{ null }
 		};
-    
+
 		static string[] command;
 		private bool paused = false;
 		private bool running = false;
 		private SpawnCommand spawn;
-    
+
 		// once the delay is set, the countdown begins
 		private int remaining = 0;
 		private int _delay = 0;
@@ -55,12 +56,12 @@ namespace Commandeer {
 					remaining = value;
 					Timeout.add_seconds (1, delay_timer);
 				} else if (value == 0) {
-					run_command ();
+					Idle.add (idle_run_command);
 				}
 				_delay = value;
 			}
 		}
-    
+
 		private VBox vbox;
 		private HButtonBox action_area;
 		private Button pause_btn;
@@ -68,25 +69,25 @@ namespace Commandeer {
 		private Button start_btn;
 		private Label information;
 		private MessageDialog quit_dlg;
-    
-		public Commandeer () {
-			this.title = "Commandeer %s".printf(Build.VERSION);
+
+		construct {
+			this.title = arg_title;
 			this.destroy += Gtk.main_quit;
 			this.position = WindowPosition.CENTER;
 			this.deletable = false;
 			this.skip_pager_hint = true;
 			this.stick ();
 			this.set_keep_above (true);
-        
+
 			vbox = new VBox (false, 0);
 			vbox.border_width = 10;
 			this.add (vbox);
-        
+
 			action_area = new HButtonBox ();
 			action_area.layout_style = ButtonBoxStyle.END;
 			action_area.spacing = 5;
 			vbox.pack_end (action_area, false, true, 0);
-        
+
 			if (arg_cancel) {
 				cancel_btn = new Button.from_stock (STOCK_CANCEL);
 				action_area.pack_start (cancel_btn, true, true, 0);
@@ -132,15 +133,15 @@ namespace Commandeer {
 					run_command ();
 				};
 			}
-        
+
 			information = new Label ("Commandeer");
 			information.use_markup = true;
 			information.wrap = true;
 			vbox.pack_start (information, true, true, 5);
-        
+
 			update_info ();
 		}
-    
+
 		// check & update the timer state (called via timeout)
 		public bool delay_timer () {
 			if (running) {
@@ -155,18 +156,27 @@ namespace Commandeer {
 			update_info ();
 			return true;
 		}
-    
+
 		public void lock_screen () {
 			deiconify ();
 			fullscreen ();
 			stick ();
 			set_keep_above (true);
+			Gdk.keyboard_grab (get_window (), false, Gdk.CURRENT_TIME);
 		}
-    
+
 		public void unlock_screen () {
 			unfullscreen ();
+			Gdk.keyboard_ungrab (Gdk.CURRENT_TIME);
 		}
-    
+
+		// wrapper method to add to an Idle call
+		// have to wait for GTK window to be realized to lock properly
+		public bool idle_run_command () {
+		    run_command ();
+		    return false;
+		}
+
 		public int run_command () {
 			debug ("Running %s", command[0]);
 			running = true;
@@ -194,7 +204,7 @@ namespace Commandeer {
 			update_info ();
 			return 0;
 		}
-    
+
 		private void update_info () {
 			string infotext = "";
 			if (running) {
@@ -227,7 +237,7 @@ namespace Commandeer {
 			}
 			information.label = infotext;
 		}
-    
+
 		public static int main (string[] args) {
 			// parse for options
 			try {
@@ -239,38 +249,43 @@ namespace Commandeer {
 				print ("%s\n", e.message);
 				return 1;
 			}
-        
+
 			if (arg_stop) {
 				arg_cancel = true;
 			}
-        
+
+            Gtk.init (ref args);
+
 			// extract the command to run
-			if (args.length == 1) {
-				print ("No command specified.\n");
-				return 1;
-			}
-			command = new string[args.length - 1];
-			for (int i = 0; i < args.length; i++) {
-				if (i > 0) {
-					command[i - 1] = args[i];
-				}
-			}
-        
-			// use the command name for the title if not specified
-			if (arg_title == null) {
-				arg_title = command[0];
-			}
-        
-			// start!
-			Gtk.init (ref args);
-			var dialog = new Commandeer ();
-			dialog.delay = arg_delay;
-			dialog.show_all ();
-        
+			if (args.length != 1) {
+    			command = new string[args.length - 1];
+    			for (int i = 0; i < args.length; i++) {
+    				if (i > 0) {
+    					command[i - 1] = args[i];
+    				}
+    			}
+
+    			// use the command name for the title if not specified
+    			if (arg_title == null) {
+    				arg_title = command[0];
+    			}
+
+    			// open the main window
+    			var dialog = new Commandeer ();
+    			dialog.delay = arg_delay;
+    			dialog.show_all ();
+
+            } else {
+                // start wizard mode
+                var wizard = new Wizard ();
+                wizard.dialog.show_all ();
+            }
+
 			// fire it up
 			Gtk.main ();
 			return 0;
 		}
-    
+
 	}
+
 }

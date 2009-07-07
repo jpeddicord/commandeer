@@ -1,10 +1,17 @@
-obj = bld.new_task_gen(
-features = 'cc cprogram',
-packages = 'gtk+-2.0 posix config',
-vapi_dirs = '.',
-target = 'commandeer',
-uselib = 'GTK GLIB',
+bld.new_task_gen(
+    features = 'cc cprogram',
+    packages = 'gtk+-2.0 gdk-2.0 posix config',
+    vapi_dirs = '.',
+    source = 'Commandeer.vala SpawnCommand.vala Wizard.vala',
+    target = 'commandeer',
+    uselib = 'GTK GDK GLIB',
 )
 
-obj.find_sources_in_dirs('.')
+bld.new_task_gen(
+    features = 'subst',
+    source = 'commandeer.ui.in',
+	target = 'commandeer.ui',
+	dict = {'VERSION': bld.env['VERSION']},
+	install_path = '${PREFIX}/share/commandeer'
+)
 

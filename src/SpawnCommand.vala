@@ -19,6 +19,7 @@
  */
 
 namespace Commandeer {
+
 	class SpawnCommand : GLib.Object {
     
 		public Pid child_pid;
@@ -56,4 +57,5 @@ namespace Commandeer {
 		}
 
 	}
+	
 }
