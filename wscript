@@ -1,7 +1,7 @@
 import Scripting
 
 APPNAME = 'commandeer'
-VERSION = '0.1.99'
+VERSION = '0.1.2'
 srcdir = '.'
 blddir = 'build'
 
