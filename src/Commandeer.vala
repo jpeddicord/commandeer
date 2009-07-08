@@ -61,7 +61,7 @@ namespace Commandeer {
 				_delay = value;
 			}
 		}
-
+        
 		private VBox vbox;
 		private HButtonBox action_area;
 		private Button pause_btn;
@@ -72,7 +72,7 @@ namespace Commandeer {
 
 		construct {
 			this.title = arg_title;
-			this.destroy += Gtk.main_quit;
+			this.destroy.connect (Gtk.main_quit);
 			this.position = WindowPosition.CENTER;
 			this.deletable = false;
 			this.skip_pager_hint = true;
@@ -91,27 +91,31 @@ namespace Commandeer {
 			if (arg_cancel) {
 				cancel_btn = new Button.from_stock (STOCK_CANCEL);
 				action_area.pack_start (cancel_btn, true, true, 0);
-				cancel_btn.clicked += (s) => {
+				cancel_btn.clicked.connect((s) => {
 					quit_dlg = new MessageDialog (this, DialogFlags.MODAL, MessageType.WARNING, ButtonsType.NONE, "Are you sure you want to stop %s?", arg_title);
 					quit_dlg.add_button ("Continue", 1);
 					quit_dlg.add_button (STOCK_STOP, ResponseType.CANCEL);
-					quit_dlg.response += (s, response) => {
-						if (response == ResponseType.CANCEL) {
-							if (running) {
-								spawn.terminate ();
-							}
-							main_quit ();
+					quit_dlg.response.connect ((s, response) => {
+					    if (response == ResponseType.CANCEL) {
+					        // make sure the user can't trick us into quitting
+    					    // with only cancel privileges
+    					    if (running && arg_stop) {
+    					        spawn.terminate ();
+    					        main_quit ();
+    					    } else if (!running && arg_cancel) {
+    					        main_quit ();
+    					    }
 						}
 						quit_dlg.destroy ();
-					};
+					});
 					quit_dlg.run ();
-				};
+				});
 			}
 			if (arg_pause) {
 				pause_btn = new Button.from_stock (STOCK_MEDIA_PAUSE);
 				action_area.pack_end (pause_btn, true, true, 0);
 				pause_btn.sensitive = false;
-				pause_btn.clicked += (s) => {
+				pause_btn.clicked.connect ((s) => {
 					if (paused) {
 						spawn.resume ();
 						paused = false;
@@ -124,14 +128,14 @@ namespace Commandeer {
 						pause_btn.label = "Resume";
 					}
 					update_info ();
-				};
+				});
 			}
 			if (arg_delay != 0) {
 				start_btn = new Button.with_label ("Start");
 				action_area.pack_end (start_btn, true, true, 0);
-				start_btn.clicked += (s) => {
+				start_btn.clicked.connect ((s) => {
 					run_command ();
-				};
+				});
 			}
 
 			information = new Label ("Commandeer");
@@ -178,10 +182,10 @@ namespace Commandeer {
 		}
 
 		public int run_command () {
-			debug ("Running %s", command[0]);
 			running = true;
 			spawn = new SpawnCommand (command);
-			spawn.child_finished += (s, status) => {
+			// alert the user to the status once finished
+			spawn.child_finished.connect ((s, status) => {
 				string msg;
 				MessageType msgtype;
 				if (status == 0) {
@@ -194,7 +198,7 @@ namespace Commandeer {
 				quit_dlg = new MessageDialog (this, DialogFlags.MODAL, msgtype, ButtonsType.CLOSE, msg, arg_title);
 				quit_dlg.run ();
 				main_quit ();
-			};
+			});
 			// lock up the desktop and update the UI
 			if (arg_stop) { cancel_btn.label = STOCK_STOP; }
 			else if (arg_cancel) { cancel_btn.sensitive = false; }
@@ -253,7 +257,9 @@ namespace Commandeer {
 			if (arg_stop) {
 				arg_cancel = true;
 			}
-
+            
+            Wizard wizard;
+            
             Gtk.init (ref args);
 
 			// extract the command to run
@@ -276,11 +282,9 @@ namespace Commandeer {
     			dialog.show_all ();
 
             } else {
-                // start wizard mode (broken)
-                /*var wizard = new Wizard ();
-                wizard.dialog.show_all ();*/
-                print ("No command specified.\n");
-                return 1;
+                // start wizard mode
+                wizard = new Wizard ();
+                wizard.dialog.show_all ();
             }
 
 			// fire it up

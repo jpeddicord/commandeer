@@ -11,15 +11,16 @@
   <object class="GtkAboutDialog" id="about">
     <property name="border_width">5</property>
     <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="icon_name">utilities-terminal</property>
     <property name="type_hint">normal</property>
+    <property name="transient_for">wizard</property>
     <property name="has_separator">False</property>
     <property name="program_name">Commandeer</property>
     <property name="version">@VERSION@</property>
     <property name="copyright" translatable="yes">Copyright &#xA9; 2009 Jacob Peddicord</property>
     <property name="website">https://launchpad.net/commandeer</property>
     <property name="website_label" translatable="yes">Commandeer on Launchpad</property>
-    <property name="authors">Jacob Peddicord &lt;jpeddicord@ubuntu.com&gt;</property>
-    <property name="documenters"></property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox2">
         <property name="visible">True</property>
@@ -82,7 +83,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry1">
+              <object class="GtkEntry" id="title">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">&#x2022;</property>
@@ -175,7 +176,7 @@
           <object class="GtkHBox" id="hbox4">
             <property name="visible">True</property>
             <child>
-              <object class="GtkCheckButton" id="checkbutton1">
+              <object class="GtkCheckButton" id="stop">
                 <property name="label" translatable="yes">Allow cancellation while running</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -183,7 +184,7 @@
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
-                <property name="padding">12</property>
+                <property name="padding">30</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -206,7 +207,6 @@
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
-                <property name="expand">False</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -230,7 +230,6 @@
                 <property name="group">delay_instant</property>
               </object>
               <packing>
-                <property name="expand">False</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -254,7 +253,6 @@
                 <property name="group">delay_instant</property>
               </object>
               <packing>
-                <property name="expand">False</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -269,7 +267,6 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="padding">5</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -323,11 +320,13 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="result">
+          <object class="GtkLabel" id="result">
+            <property name="width_request">350</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="editable">False</property>
-            <property name="invisible_char">&#x2022;</property>
+            <property name="xalign">0</property>
+            <property name="label">commandeer</property>
+            <property name="wrap">True</property>
+            <property name="selectable">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -369,20 +368,6 @@
                 <property name="position">1</property>
               </packing>
             </child>
-            <child>
-              <object class="GtkButton" id="btn_run">
-                <property name="label" translatable="yes">Run</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="image">img_run</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -395,11 +380,6 @@
     <action-widgets>
       <action-widget response="0">btn_about</action-widget>
       <action-widget response="0">btn_copy</action-widget>
-      <action-widget response="0">btn_run</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkImage" id="img_run">
-    <property name="visible">True</property>
-    <property name="stock">gtk-media-play</property>
   </object>
 </interface>

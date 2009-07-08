@@ -1,7 +1,7 @@
 import Scripting
 
 APPNAME = 'commandeer'
-VERSION = '0.1.2'
+VERSION = '0.1.90'
 srcdir = '.'
 blddir = 'build'
 
@@ -14,7 +14,7 @@ def set_options(opt):
 def configure(conf):
     conf.check_tool('compiler_cc cc vala misc')
     conf.check_cfg(package='glib-2.0', uselib_store='GLIB', mandatory=1, args='--cflags --libs')
-    conf.check_cfg(package='gtk+-2.0', uselib_store='GTK', atleast_version='2.10.0', mandatory=1, args='--cflags --libs')
+    conf.check_cfg(package='gtk+-2.0', uselib_store='GTK', atleast_version='2.17.0', mandatory=1, args='--cflags --libs')
     
     conf.define('PACKAGE', APPNAME)
     conf.define('VERSION', VERSION)

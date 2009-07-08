@@ -1,3 +1,15 @@
+commandeer (0.1.90~ppa1) karmic; urgency=low
+
+  * Release candidate for 0.2.
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Wed, 08 Jul 2009 19:28:55 -0400
+
+commandeer (0.1.2~ppa1) karmic; urgency=low
+
+  * New release.
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Wed, 08 Jul 2009 00:18:47 -0400
+
 commandeer (0.1-0ubuntu1~ppa2) karmic; urgency=low
 
   * Fix build dependency error.

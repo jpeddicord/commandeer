@@ -27,6 +27,7 @@ namespace Commandeer {
 		public signal void child_finished (int status);
     
 		public SpawnCommand (string[] cmd) {
+		    debug ("Running %s", cmd[0]);
 			try {
 				Process.spawn_async_with_pipes (null, cmd, null, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out child_pid, null, null, null);
 				ChildWatch.add (child_pid, this.child_ended);
