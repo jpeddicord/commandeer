@@ -1,0 +1,13 @@
+To build Commandeer, you will need:
+
+  * valac, 0.7 or greater
+  * python 2.3 or greater
+
+Commandeer is built using Waf, and is very simple to build:
+
+  ./waf configure
+  ./waf
+  ./waf install           (optional, run as root)
+
+Sound familiar? :)
+
