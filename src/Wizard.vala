@@ -49,10 +49,9 @@ namespace Commandeer {
             // about trigger
             dlg_about = builder.get_object ("about") as AboutDialog;
             btn_about = builder.get_object ("btn_about") as Button;
-            btn_about.clicked += (s) => {
-                // XXX: segfault :(
-                dlb_about.show_all ();
-            };
+            btn_about.clicked.connect((s) => {
+				dlg_about.show_all ();
+            });
             
             // the dialog itself
             dialog = builder.get_object ("wizard") as Dialog;

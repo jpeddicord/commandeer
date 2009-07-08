@@ -276,9 +276,11 @@ namespace Commandeer {
     			dialog.show_all ();
 
             } else {
-                // start wizard mode
-                var wizard = new Wizard ();
-                wizard.dialog.show_all ();
+                // start wizard mode (broken)
+                /*var wizard = new Wizard ();
+                wizard.dialog.show_all ();*/
+                print ("No command specified.\n");
+                return 1;
             }
 
 			// fire it up

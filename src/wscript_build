@@ -2,9 +2,10 @@ bld.new_task_gen(
     features = 'cc cprogram',
     packages = 'gtk+-2.0 gdk-2.0 posix config',
     vapi_dirs = '.',
-    source = 'Commandeer.vala SpawnCommand.vala Wizard.vala',
+    source = 'Commandeer.vala SpawnCommand.vala', # Wizard.vala',
     target = 'commandeer',
     uselib = 'GTK GDK GLIB',
+    ccflags = '-g',
 )
 
 bld.new_task_gen(
