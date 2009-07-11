@@ -1,7 +1,7 @@
 import Scripting
 
 APPNAME = 'commandeer'
-VERSION = '0.1.90'
+VERSION = '0.2.0'
 srcdir = '.'
 blddir = 'build'
 
@@ -24,3 +24,7 @@ def configure(conf):
 
 def build(bld):
     bld.add_subdirs('src')
+    
+    # desktop file
+    bld.install_files('${PREFIX}/share/applications', 'commandeer.desktop')
+

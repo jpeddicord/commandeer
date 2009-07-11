@@ -1,0 +1,89 @@
+=head1 NAME
+
+Commandeer - lock the screen to run a command
+
+=head1 SYNOPSIS
+
+commandeer [[options...] -- B<command>]
+
+=head1 DESCRIPTION
+
+Commandeer is a command that allows a system administrator to lock the screen
+while a command is running. This is useful for tech support tasks, backup
+jobs, and other situations where you do not want the end user using the system.
+Combined with cron, it could be effectively used as a parental control/timer
+system.
+
+=head1 OPTIONS
+
+When run without any arguments, a GTK+ interface will launch that will help
+to construct a command line to run. All options available on the command line
+are presented in the graphical interface.
+
+=over 8
+
+=item B<--delay I<seconds>>
+
+=item B<-d I<seconds>>
+
+Set a timed delay before the command will be run. If the delay is zero or
+this parameter is missing, the command will be run instantly. Otherwise, a
+countdown will begin, with a Start button to end the countdown and immediatetly
+begin. If the delay is set to -1, then there will be no countdown; the user will
+simply be presented with a Start button that they may begin at their leisure.
+
+=item B<--pause>
+
+=item B<-p>
+
+Allow pausing of the command while it is running. When the pause button is
+pressed, the window will shrink, allowing the user to finish up other tasks
+(but the window still may not be closed).
+
+Pausing and resuming causes SIGSTOP and SIGCONT, respectively, to be
+sent to the child process. Use with care; this is probably not appropriate
+for commands that run over a network.
+
+=item B<--cancel>
+
+=item B<--c>
+
+Allows the command to be cancelled before it begins. Useless unless --delay
+is set.
+
+=item B<--stop>
+
+=item B<-s>
+
+Allows the command to be stopped while running. If enabled, clicking on the
+Stop button causes a SIGTERM to be sent to the child process, and Commandeer
+will exit. Use with care.
+Implies --cancel.
+
+=item B<--title "I<title>">
+
+=item B<-t "I<title>">
+
+Changes the title of the command used in Commandeer messages.
+By default, Commandeer will use the first part of the command to use as a title.
+
+=item B<--text "I<text>">
+
+If set, this text will be displayed on the Commandeer interface before and
+while the command is running. Useful for describing to the end user what is
+happening or about to happen.
+
+=back
+
+=head1 BUGS
+
+Bugs may be filed on Launchpad at: https://bugs.launchpad.net/commandeer
+
+=head1 AUTHORS
+
+B<commandeer> and its man page were written by Jacob Peddicord <jpeddicord@ubuntu.com>.
+The project page is available at https://launchpad.net/commandeer.
+
+Both are released under the GNU General Public License, version 2 or later.
+
+=cut

@@ -5,11 +5,14 @@ package = commandeer
 build:
 	./waf configure --prefix=/usr
 	./waf build
+	
+	pod2man --section=1 --release=$(VERSION) --center "" debian/commandeer.pod > commandeer.1
 
 clean:
 	dh_testdir
 	dh_clean
 	./waf distclean
+	rm -f commandeer.1
 
 install: build
 	dh_clean
@@ -23,6 +26,7 @@ binary-arch: install
 	dh_testroot
 	dh_installdocs
 	dh_installchangelogs
+	dh_installman commandeer.1
 	dh_install
 	dh_strip
 	dh_compress

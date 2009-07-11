@@ -1,3 +1,9 @@
+commandeer (0.2.0~ppa1) karmic; urgency=low
+
+  * First stable release. Adds desktop/menu entry and manpage (Debian).
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Fri, 10 Jul 2009 20:26:37 -0400
+
 commandeer (0.1.90~ppa1) karmic; urgency=low
 
   * Release candidate for 0.2.

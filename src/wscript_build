@@ -11,8 +11,8 @@ bld.new_task_gen(
 bld.new_task_gen(
     features = 'subst',
     source = 'commandeer.ui.in',
-	target = 'commandeer.ui',
-	dict = {'VERSION': bld.env['VERSION']},
-	install_path = '${PREFIX}/share/commandeer'
+    target = 'commandeer.ui',
+    dict = {'VERSION': bld.env['VERSION']},
+    install_path = '${PREFIX}/share/commandeer'
 )
 
