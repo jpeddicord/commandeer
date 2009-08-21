@@ -48,6 +48,8 @@ namespace Commandeer {
             clipboard = Clipboard.get (Gdk.SELECTION_CLIPBOARD);
             string filename;
             
+            Window.set_default_icon_name ("commandeer");
+            
             if (FileUtils.test ("commandeer.ui", FileTest.EXISTS)) {
                 filename = "commandeer.ui";
             } else {

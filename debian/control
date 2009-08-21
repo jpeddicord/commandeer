@@ -15,7 +15,3 @@ Description: lock the screen for command execution
  option is provided to schedule important system maintenance tasks (such
  as a backup) and allow the user to save their work before the command
  begins.
- .
- This was programmed as a Vala learning experience, and may not suit all
- usages. However, it is enough to keep a novice user off of their desktop
- while important tasks are running.

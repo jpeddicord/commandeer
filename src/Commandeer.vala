@@ -79,6 +79,8 @@ namespace Commandeer {
 			this.stick ();
 			this.set_keep_above (true);
 
+            Window.set_default_icon_name ("commandeer");
+
 			vbox = new VBox (false, 0);
 			vbox.border_width = 10;
 			this.add (vbox);
