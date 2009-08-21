@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import Scripting
 
 APPNAME = 'commandeer'
@@ -26,5 +28,10 @@ def build(bld):
     bld.add_subdirs('src')
     
     # desktop file
-    bld.install_files('${PREFIX}/share/applications', 'commandeer.desktop')
+    bld.install_files('${PREFIX}/share/applications', 'data/commandeer.desktop')
+    # icons
+    bld.install_as('${PREFIX}/share/icons/hicolor/16x16/apps/commandeer.png', 'data/16.png')
+    bld.install_as('${PREFIX}/share/icons/hicolor/22x22/apps/commandeer.png', 'data/22.png')
+    bld.install_as('${PREFIX}/share/icons/hicolor/24x24/apps/commandeer.png', 'data/24.png')
+    bld.install_as('${PREFIX}/share/icons/hicolor/scalable/apps/commandeer.svg', 'data/scalable.svg')
 

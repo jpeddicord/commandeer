@@ -5,5 +5,5 @@ Comment=Lock the system for the duration of a command
 Type=Application
 Terminal=false
 Exec=commandeer
-Icon=utilities-terminal
+Icon=commandeer
 Categories=System;

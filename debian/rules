@@ -28,6 +28,7 @@ binary-arch: install
 	dh_installchangelogs
 	dh_installman commandeer.1
 	dh_install
+	dh_icons
 	dh_strip
 	dh_compress
 	dh_fixperms
