@@ -1,3 +1,9 @@
+commandeer (0.2.1~ppa1) karmic; urgency=low
+
+  * New minor polishing release.
+
+ -- Jacob Peddicord <jpeddicord@ubuntu.com>  Fri, 21 Aug 2009 19:45:48 -0400
+
 commandeer (0.2.0~ppa1) karmic; urgency=low
 
   * First stable release. Adds desktop/menu entry and manpage (Debian).
