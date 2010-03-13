@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=Commandeer
-Comment=Lock the system for the duration of a command
-Type=Application
-Terminal=false
-Exec=commandeer
-Icon=commandeer
-Categories=System;
