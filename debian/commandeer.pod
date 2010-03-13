@@ -4,7 +4,7 @@ Commandeer - lock the screen to run a command
 
 =head1 SYNOPSIS
 
-commandeer [[options...] -- B<command>]
+commandeer [options...] -- B<command>
 
 =head1 DESCRIPTION
 
@@ -15,10 +15,6 @@ Combined with cron, it could be effectively used as a parental control/timer
 system.
 
 =head1 OPTIONS
-
-When run without any arguments, a GTK+ interface will launch that will help
-to construct a command line to run. All options available on the command line
-are presented in the graphical interface.
 
 =over 8
 

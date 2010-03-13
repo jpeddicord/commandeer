@@ -1,7 +1,7 @@
 /*
  * Commandeer <https://launchpad.net/commandeer>
  *
- * Copyright (C) 2009 Jacob Peddicord <jpeddicord@ubuntu.com>
+ * Copyright (C) 2009-2010 Jacob Peddicord <jpeddicord@ubuntu.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
